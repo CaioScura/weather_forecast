@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="src/css/style.css">
+    <title>Wheater Forecast</title>
+</head>
+
+<body>
+    <div id="container">
+        <form id="search">
+            <i class="fa-solid fa-location-dot"></i>
+
+            <input type="search" name="city_name" id="city_name" placeholder="Buscar cidade">
+
+            <button type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </form>
+
+        <div id="weather">
+            <h1 id="title">Itapetininga, BR</h1>
+
+            <div id="infos">
+                <div id="temp">
+                    <img id="temp_img" src="" alt="">
+
+                    <div>
+                        <p id="temp_value">
+
+                        </p>
+
+                        <p id="temp_description">
+
+                        </p>
+                    </div>
+                </div>
+
+                <div id="other_infos">
+                    <div class="info">
+                        <i id="temp_max_icon" class="fa-solid fa-temperature-high"></i>
+
+                        <div>
+                            <h2>Temp. Máx</h2>
+                            <p id="temp_max">
+
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <i id="temp_min_icon" class="fa-solid fa-temperature-low"></i>
+
+                        <div>
+                            <h2>Temp. Min</h2>
+                            <p id="temp_min">
+
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <i id="humidity_icon" class="fa-solid fa-droplet"></i>
+
+                        <div>
+                            <h2>Humidade</h2>
+                            <p id="humidity">
+
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <i id="wind_icon" class="fa-solid fa-wind"></i>
+
+                        <div>
+                            <h2>Vento</h2>
+                            <p id="wind">
+
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="alert"></div>
+    </div>
+
+    <script src="src/js/script.js"></script>
+
+</body>
+
+</html>
