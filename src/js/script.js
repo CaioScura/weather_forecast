@@ -24,6 +24,9 @@ document.querySelector('#search').addEventListener('submit', async(event) => {
     //console.log(json)
 
     if (json.cod === 200) {
+        //função que muda cor de fundo
+        colorBackground(json.main.temp);
+
         //recebendo as informçaçoes da api
         showInfo({
             city: json.name,
@@ -72,4 +75,14 @@ function showInfo(json) {
 function showAlert(msg) {
     //vai mandar o alerta na pagina
     document.querySelector('#alert').innerHTML = msg;
+}
+
+function colorBackground(temp){
+    const tempElement = document.querySelector('#temp');
+    tempElement.style.background = temp > 25 
+        ? 'linear-gradient(#f0b26b, #f58c62)' 
+        : 'linear-gradient(#3b82f6, #4a7dff)';
+
+    //mudando cor de fundo, se for maior que 25°C fundo fica tom laranjado, senao fica azulado
+    document.body.style.background = temp > 25 ? 'linear-gradient(#f0b26b, #f58c62)' : 'linear-gradient(#3b82f6, #4a7dff)';
 }
