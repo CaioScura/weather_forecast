@@ -49,27 +49,38 @@ document.querySelector('#search').addEventListener('submit', async(event) => {
     }
 });
 
+
+document.querySelector('#tempFormat').addEventListener('change', () => {
+    const json = // você precisa armazenar o último json de resultado de showInfo em algum lugar para reutilizar aqui
+        showInfo(json);
+});
+
+
 function showInfo(json) {
+    const format = document.querySelector('#tempFormat').value;
+    const isFahrenheit = format === 'F';
+    const tempSymbol = isFahrenheit ? 'F°' : 'C°';
+
     showAlert('');
 
     //mostrar as informações
     document.querySelector("#weather").classList.add('show');
 
     document.querySelector("#title").innerHTML = `${json.city}, ${json.country}`;
-    //toFixed(1) -> 1 casa decimal
-    //toString().replace('.', ',') -> converte em string e troca . por ,
-    document.querySelector("#temp_value").innerHTML = `${json.temp.toFixed(1).toString().replace('.', ',')} <sup>C°</sup>`;
+    const temp = isFahrenheit ? convertTemperature(json.temp, true) : json.temp;
+    document.querySelector("#temp_value").innerHTML = `${temp.toFixed(1).toString().replace('.', ',')} <sup>${tempSymbol}</sup>`;
 
     document.querySelector("#temp_description").innerHTML = `${json.description}`;
 
     document.querySelector("#temp_img").setAttribute('src', `https://openweathermap.org/img/wn/${json.tempIcon}@2x.png`);
 
-    document.querySelector("#temp_max").innerHTML = `${json.tempMax.toFixed(1).toString().replace('.', ',')} <sup>C°</sup>`;
-    document.querySelector("#temp_min").innerHTML = `${json.tempMin.toFixed(1).toString().replace('.', ',')} <sup>C°</sup>`;
+    const tempMax = isFahrenheit ? convertTemperature(json.tempMax, true) : json.tempMax;
+    const tempMin = isFahrenheit ? convertTemperature(json.tempMin, true) : json.tempMin;
+    document.querySelector("#temp_max").innerHTML = `${tempMax.toFixed(1).toString().replace('.', ',')} <sup>${tempSymbol}</sup>`;
+    document.querySelector("#temp_min").innerHTML = `${tempMin.toFixed(1).toString().replace('.', ',')} <sup>${tempSymbol}</sup>`;
 
     document.querySelector("#humidity").innerHTML = `${json.humidity}`;
     document.querySelector("#wind").innerHTML = `${json.windSpeed.toFixed(1)}km/h`;
-
 }
 
 function showAlert(msg) {
@@ -77,12 +88,20 @@ function showAlert(msg) {
     document.querySelector('#alert').innerHTML = msg;
 }
 
-function colorBackground(temp){
+function colorBackground(temp) {
     const tempElement = document.querySelector('#temp');
-    tempElement.style.background = temp > 25 
-        ? 'linear-gradient(#f0b26b, #f58c62)' 
-        : 'linear-gradient(#3b82f6, #4a7dff)';
+    tempElement.style.background = temp > 25 ?
+        'linear-gradient(#f0b26b, #f58c62)' :
+        'linear-gradient(#3b82f6, #4a7dff)';
 
     //mudando cor de fundo, se for maior que 25°C fundo fica tom laranjado, senao fica azulado
     document.body.style.background = temp > 25 ? 'linear-gradient(#f0b26b, #f58c62)' : 'linear-gradient(#3b82f6, #4a7dff)';
+}
+
+function convertTemperature(temperature, toFahrenheit) {
+    if (toFahrenheit) {
+        return (temperature * 9 / 5) + 32; // Celsius para Fahrenheit
+    } else {
+        return (temperature - 32) * 5 / 9; // Fahrenheit para Celsius, caso necessário
+    }
 }
