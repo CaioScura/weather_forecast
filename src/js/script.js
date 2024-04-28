@@ -51,8 +51,7 @@ document.querySelector('#search').addEventListener('submit', async(event) => {
 
 
 document.querySelector('#tempFormat').addEventListener('change', () => {
-    const json = // você precisa armazenar o último json de resultado de showInfo em algum lugar para reutilizar aqui
-        showInfo(json);
+    const json = showInfo(json);
 });
 
 
