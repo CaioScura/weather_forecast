@@ -1,6 +1,8 @@
 //atualiza a pagina ao selecionar em buscar, prevenir esse comportamento padrao do formulario
 //evento de submit
 
+//botao aleatorio = json com paises => usar de request para gerar as informações de uma cidade aleatoria
+
 document.querySelector('#search').addEventListener('submit', async(event) => {
     event.preventDefault();
 
